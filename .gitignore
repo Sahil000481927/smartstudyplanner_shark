@@ -1,6 +1,7 @@
 *.iml
 .auth
 .idea
+.kotlin
 build/
 /app/build/
 .gradle

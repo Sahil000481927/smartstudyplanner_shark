@@ -11,6 +11,9 @@ class TaskRepository(private val taskDao: TaskDao) {
 
     val allTasksChronological: Flow<List<StudyTask>> =
         taskDao.getAllTasksSortedByDueDate()
+
+    suspend fun insertTask(task: StudyTask) = taskDao.insertTask(task)
+    suspend fun insertTasks(tasks: List<StudyTask>) = taskDao.insertTasks(tasks)
 }
 
 class TaskViewModelFactory(
