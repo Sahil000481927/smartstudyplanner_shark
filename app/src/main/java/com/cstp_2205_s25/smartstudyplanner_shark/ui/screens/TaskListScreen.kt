@@ -20,11 +20,14 @@ import java.time.format.DateTimeFormatter
 fun TaskListScreen(viewModel: TaskViewModel, modifier: Modifier) {
     val tasks = viewModel.taskList.collectAsState().value
 
+    val incompleteTasks = tasks.filter { !it.isCompleted }
+    val completedTasks = tasks.filter { it.isCompleted }
+
     Scaffold(
         modifier = modifier,
         topBar = {
             TopAppBar(
-                title = { Text("Upcoming Tasks") }
+                title = { Text("All Tasks") }
             )
         }
     ) { padding ->
@@ -43,8 +46,30 @@ fun TaskListScreen(viewModel: TaskViewModel, modifier: Modifier) {
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.padding(padding)
             ) {
-                items(tasks) { task ->
-                    TaskItemCard(task = task)
+                if (incompleteTasks.isNotEmpty()) {
+                    item {
+                        Text(
+                            text = "Upcoming Tasks",
+                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+                    }
+                    items(incompleteTasks) { task ->
+                        TaskItemCard(task = task, viewModel = viewModel)
+                    }
+                }
+                if (completedTasks.isNotEmpty()) {
+                    item {
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Text(
+                            text = "Completed Tasks",
+                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                    }
+                    items(completedTasks) { task ->
+                        TaskItemCard(task = task, viewModel = viewModel)
+                    }
                 }
             }
         }

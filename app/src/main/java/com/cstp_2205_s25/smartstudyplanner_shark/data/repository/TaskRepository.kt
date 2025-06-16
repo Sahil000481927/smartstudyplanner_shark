@@ -14,6 +14,7 @@ class TaskRepository(private val taskDao: TaskDao) {
 
     suspend fun insertTask(task: StudyTask) = taskDao.insertTask(task)
     suspend fun insertTasks(tasks: List<StudyTask>) = taskDao.insertTasks(tasks)
+    suspend fun updateTask(task: StudyTask) = taskDao.updateTask(task)
 }
 
 class TaskViewModelFactory(

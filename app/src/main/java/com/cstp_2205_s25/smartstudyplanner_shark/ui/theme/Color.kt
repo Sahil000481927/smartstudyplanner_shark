@@ -1,4 +1,4 @@
-package com.example.compose
+package com.cstp_2205_s25.smartstudyplanner_shark.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF24389C)

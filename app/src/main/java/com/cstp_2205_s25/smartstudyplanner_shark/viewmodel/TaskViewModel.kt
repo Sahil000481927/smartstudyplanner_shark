@@ -40,6 +40,12 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
             repository.insertTask(task)
         }
     }
+
+    fun toggleTaskCompletion(task: StudyTask) {
+        viewModelScope.launch {
+            repository.updateTask(task)
+        }
+    }
 }
 
 class TaskViewModelFactory(

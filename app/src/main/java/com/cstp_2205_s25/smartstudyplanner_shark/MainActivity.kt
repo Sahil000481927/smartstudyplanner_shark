@@ -22,7 +22,7 @@ import com.cstp_2205_s25.smartstudyplanner_shark.data.repository.TaskViewModelFa
 import com.cstp_2205_s25.smartstudyplanner_shark.ui.screens.TaskEntryScreen
 import com.cstp_2205_s25.smartstudyplanner_shark.ui.screens.TaskListScreen
 import com.cstp_2205_s25.smartstudyplanner_shark.viewmodel.TaskViewModel
-import com.example.compose.Smartstudyplanner_sharkTheme
+import com.cstp_2205_s25.smartstudyplanner_shark.ui.theme.Smartstudyplanner_sharkTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
