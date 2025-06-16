@@ -9,11 +9,47 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
     val taskList: StateFlow<List<StudyTask>> = repository
         .allTasksChronological
-        .map { it.sortedBy { task -> task.dueDate } } // redundant if DAO already sorts
+        .map { it.sortedBy { task -> task.dueDate } }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    fun addNewTask(
+        title: String,
+        subject: String,
+        description: String? = null,
+        dueDate: LocalDateTime,
+        priority: Int
+    ) {
+        val task = StudyTask(
+            title = title,
+            subject = subject,
+            description = description,
+            dueDate = dueDate,
+            priority = priority,
+            isCompleted = false,
+            createdAt = LocalDateTime.now()
+        )
+
+        viewModelScope.launch {
+            repository.insertTask(task)
+        }
+    }
+}
+
+class TaskViewModelFactory(
+    private val repository: TaskRepository
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return TaskViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

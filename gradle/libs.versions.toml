@@ -8,13 +8,17 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
 composeBom = "2024.09.00"
+navigationCompose = "2.9.0"
 roomCommonJvm = "2.7.1"
 roomRuntimeJvm = "2.7.1"
 roomVersion = "2.7.1"
 runtimeLivedata = "1.8.2"
+navigationComposeJvmstubs = "2.9.0"
+material3Jvmstubs = "1.4.0-alpha15"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
@@ -34,6 +38,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", version.ref = "roomCommonJvm" }
 androidx-room-runtime-jvm = { group = "androidx.room", name = "room-runtime-jvm", version.ref = "roomRuntimeJvm" }
+androidx-navigation-compose-jvmstubs = { group = "androidx.navigation", name = "navigation-compose-jvmstubs", version.ref = "navigationComposeJvmstubs" }
+androidx-material3-jvmstubs = { group = "androidx.compose.material3", name = "material3-jvmstubs", version.ref = "material3Jvmstubs" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

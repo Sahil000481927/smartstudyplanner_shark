@@ -17,10 +17,11 @@ import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TaskListScreen(viewModel: TaskViewModel) {
+fun TaskListScreen(viewModel: TaskViewModel, modifier: Modifier) {
     val tasks = viewModel.taskList.collectAsState().value
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
                 title = { Text("Upcoming Tasks") }
